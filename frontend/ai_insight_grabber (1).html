@@ -164,7 +164,8 @@
     </main>
 
     <script>
-        const API_BASE_URL = "http://127.0.0.1:8000/api";
+        // Updated with AWS PrivateLink VPC Endpoint DNS name
+        const API_BASE_URL = "http://vpce-0f223d137e1b4a275-cgrx78qs.vpce-svc-0af97ae46d9b8dd47.us-east-1.vpce.amazonaws.com:8000/api";
         let activeUserId = null;
         let selectedFile = null;
         let activeChartInstance = null;
