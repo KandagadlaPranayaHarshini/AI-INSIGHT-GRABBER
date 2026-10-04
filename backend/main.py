@@ -8,8 +8,8 @@ import io
 from database import engine, get_db, Base
 import models, schemas
 
-# Auto create DB tables
-Base.metadata.create_all(bind=engine)
+# Auto create DB tables - Commented out because tables already exist in database
+# Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="AI Insight Grabber")
 
@@ -120,7 +120,6 @@ async def analyze_dataset(
         num_cols = list(numeric_df.columns)
 
         if len(all_cols) > 0:
-            # Bar Chart: Frequency distribution of 1st column or 1st categorical column
             cat_col = next((c for c in df.columns if df[c].dtype == 'object'), all_cols[0])
             val_counts = df[cat_col].value_counts().head(10)
             charts_data["bar"] = {
@@ -130,7 +129,6 @@ async def analyze_dataset(
             }
 
         if len(num_cols) > 0:
-            # Line / Histogram Chart: Distribution of 1st numeric column
             target_num = num_cols[0]
             sample_data = numeric_df[target_num].dropna().head(30)
             charts_data["line"] = {
